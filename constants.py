@@ -1,0 +1,9 @@
+import pygame
+
+WINDOW_HEIGHT = 500
+WINDOW_WIDTH = 1067
+disk_quantity = 7
+DISK_WIDTH = 80
+HORIZONTAL_SPACE = 130
+VERTICAL_SPACER = 100
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT), pygame.RESIZABLE)
