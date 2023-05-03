@@ -1,19 +1,17 @@
-import pygame.image
+import pygame
 from constants import *
 
 
 class Disk:
-    def __init__(self, size, img_src, color, x_pos, y_pos):
+    def __init__(self, size: int, color: tuple):
         self.size = size
-        self.img_src = img_src
         self.color = color
-        self.x_pos = x_pos
-        self.y_pos = y_pos
 
     def set_disk_pos(self, x_pos, y_pos):
         pass
 
-    def draw_disk(self):
-        img = pygame.image.load(self.img_src)
-        img = pygame.transform.scale(img, (DISK_WIDTH+10*self.size, 50))
-        screen.blit(img, (HORIZONTAL_SPACE+(self.x_pos-1)*350, VERTICAL_SPACER+self.y_pos*30))
+    def draw_disk(self, x_pos, y_pos):
+        square = pygame.Rect(0, 0, self.size*35,
+                             SQUARE_HEIGHT)
+        square.center = (HORIZONTAL_SPACE+(x_pos-1)*353, VERTICAL_SPACER-y_pos*25)
+        pygame.draw.rect(screen, self.color, square)

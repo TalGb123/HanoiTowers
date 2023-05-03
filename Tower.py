@@ -1,17 +1,20 @@
-class Tower:
-    def __self__(self, list_of_disks, x_pos, screen):
-        self.list_of_disks = []
-        self.x_pos = x_pos
-        self.screen = screen
+from Disk import Disk
 
-    def add_disk(self, disk):
-        pass
+
+class Tower:
+    def __init__(self, list_of_disks, x_pos):
+        self.list_of_disks = list_of_disks
+        self.x_pos = x_pos
+
+    def add_disk(self, disk: Disk):
+        self.list_of_disks.append(disk)
 
     def remove_disk(self):
-        pass
+        return self.list_of_disks.pop()
 
     def get_amount_of_disks(self):
         pass
 
     def add_tower_to_screen(self):
-        pass
+        for i in range(len(self.list_of_disks)):
+            Disk.draw_disk(self.list_of_disks[len(self.list_of_disks) - 1 - i], self.x_pos, i)
