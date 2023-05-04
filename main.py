@@ -2,13 +2,17 @@ import pygame
 from constants import *
 from Disk import Disk
 from Tower import Tower
-import time
 
 
-def screen_output(tower_list):
+def screen_output(tower_list, count):
     screen.blit(background, (0, 0))
     for i in range(len(tower_list)):
         Tower.add_tower_to_screen(tower_list[i])
+    font = pygame.font.SysFont("Aharoni", 20)
+    text_min_steps = font.render(f"Minimum Steps: {(2 ** disk_quantity) - 1}", True, (0, 0, 0))
+    text_steps = font.render(f"Your Steps: {count+1}", True, (0, 0, 0))
+    screen.blit(text_min_steps, (20, 20))
+    screen.blit(text_steps, (WINDOW_WIDTH-150, 20))
 
 
 def hanoi(num_discs, source, target, auxiliary, step_list):
@@ -21,11 +25,12 @@ def hanoi(num_discs, source, target, auxiliary, step_list):
     hanoi(num_discs - 1, auxiliary, target, source, step_list)
 
 
-def solve(tower_list, step_list):
-    for i, (source, dest) in enumerate(step_list):
-        disk = source.remove_disk()
-        dest.add_disk(disk)
-        screen_output(tower_list)
+def solve(tower_list, step_list, count):
+    source = tower_list[step_list[count][0]-1]
+    dest = tower_list[step_list[count][1]-1]
+    disk = source.remove_disk()
+    dest.add_disk(disk)
+    screen_output(tower_list, count)
 
 
 def main():
@@ -67,16 +72,22 @@ def main():
 
     running = True
     step_list = []
-    hanoi(disk_quantity, t1, t3, t2, step_list)
+    count = 0
+    hanoi(disk_quantity, 1, 3, 2, step_list)
     solved = False
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
                 pygame.quit()
+        # screen_output(tower_list, count)
         if not solved:
-            solve(tower_list, step_list)
-            solved = True
+            solve(tower_list, step_list, count)
+            count += 1
+            clock.tick(20)
+
+            if count == len(step_list):
+                solved = True
 
         pygame.display.flip()
 

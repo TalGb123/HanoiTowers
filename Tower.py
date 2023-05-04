@@ -10,10 +10,10 @@ class Tower:
         self.list_of_disks.append(disk)
 
     def remove_disk(self):
-        return self.list_of_disks.pop()
+        return self.list_of_disks.pop(-1)
 
     def get_amount_of_disks(self):
-        pass
+        return len(self.list_of_disks)
 
     def add_tower_to_screen(self):
         for i in range(len(self.list_of_disks)):

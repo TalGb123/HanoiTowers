@@ -11,3 +11,6 @@ background = pygame.image.load('images/background.png')
 background = pygame.transform.scale(background,
                                     (WINDOW_WIDTH, WINDOW_HEIGHT))
 SQUARE_HEIGHT = 25
+clock = pygame.time.Clock()
+FPS = 30
+
