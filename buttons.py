@@ -3,6 +3,7 @@ from constants import *
 
 # buttons with their sizes and position of placement
 
+
 restart_button = Button(RESTART_X_POS,
                         RESTART_Y_POS,
                         RESTART_WIDTH,

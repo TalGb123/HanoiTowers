@@ -186,8 +186,11 @@ def main():
                 # locking the screen when solver finishes
                 if count == len(step_list):
                     solved = True
+
+        # outputs screen with a message while solver is not activated
         else:
             screen_output(tower_list, 0)
+
         pygame.display.flip()
 
 
